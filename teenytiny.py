@@ -1,19 +1,19 @@
 from lex import Lexer, TokenType
+from parse import Parser
+import sys
 
 def main():
-    # source_code = "+ - * /"
-    # source_code = "+ - * / > >= = != !"
-    # source_code = "#This will be ignored\n"
-    # source_code = "\"String = 13\" != +"
-    # source_code = "2+3=5"
-    # source_code = "2.45 + 3.55 = 6.00"
-    # source_code = "IF foo THEN bar"
-    source_code = "PRINT\"Hello, World\" > 4.5"
+    print("Teeny Tiny Compiler\n")
 
-    lexer = Lexer(source_code)
-    
-    token = lexer.getToken()
-    while token.kind != TokenType.EOF:
-        print(token.kind)
-        token = lexer.getToken()
+    if len(sys.argv) != 2:
+        sys.exit("Error: Compiler needs source file as argument.")
+    with open(sys.argv[1], 'r') as inputFile:
+        source = inputFile.read()
+
+    # Initialize the lexer and parser.
+    lexer = Lexer(source)
+    parser = Parser(lexer)
+
+    parser.program() # Start the parser.
+    print("\nParsing completed.")
 main()
