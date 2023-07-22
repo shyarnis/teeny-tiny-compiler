@@ -14,6 +14,8 @@ def main():
     lexer = Lexer(source)
     parser = Parser(lexer)
 
-    parser.program() # Start the parser.
+    # Start the parser.
+    parser.program()
     print("\nParsing completed.")
+
 main()
